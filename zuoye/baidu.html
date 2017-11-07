@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+		<style>
+		*{
+			padding: 0;
+      		margin: 0;
+		}
+		ul, ol {
+      		list-style: none;
+      		margin: 0px;
+      		padding: 0px;
+    	}
+		#box {
+    	  width: 405px;
+    	  margin: 200px auto;
+    	  position: relative;
+    	}
+
+		#ipt{
+			float: left;
+      		width: 300px;
+      		height: 32px;
+      		padding-left: 4px;
+      		border: 1px solid #b6b6b6;
+      		border-right: 0;
+
+		}
+		#btn{
+			float: left;
+      		width: 100px;
+      		height: 34px;
+      		font: 400 14px/34px "microsoft yahei";
+      		color: white;
+      		background: #3385ff;
+      		cursor: pointer;
+      		border: none;
+		}
+		#btn:hover{
+			background-color:#317ef3;
+		}
+		</style>
+    </head>
+    <body>
+    	<div class="container" id="box">
+    		<input type="text" id="ipt">
+    		<button id="btn">百度一下</button>
+    	</div>
+    	<script>
+    		var arr=['adb','a2a8ad7','397sd','6asd23','55tr6','4gfg45','7hg78','8jhj56','45bcv9']
+    		var ipt=document.getElementById('ipt');
+    		var box=document.getElementById('box');
+    		var list=document.createElement("ul");
+    		box.appendChild(list);
+    		ipt.onkeyup=function() {
+    			list.innerHTML='';
+    			if (this.value=='') {
+    				return;
+    			}
+    			for (var i = 0; i < arr.length; i++) {
+
+    				if(arr[i].indexOf(this.value)==0){
+    				 	var li=document.createElement("li");
+              li.innerHTML=arr[i];
+    				 	list.appendChild(li);
+    				 	
+    				}
+    			}
+    		}
+    	</script>
+    </body>
+</html>

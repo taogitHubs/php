@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>全局事件处理</title>
+</head>
+<body>
+  <button id="btn_send">请求</button>
+
+  <script src="jquery.js"></script>
+  <script>
+    // 这种类型的事件最合适就是去做加载动画
+    $(document).ajaxStart(function (xhr) {
+      // 全局有任意一次 AJAX 请求开始（必须是 jQuery 发起的请求）
+      console.log('有请求了')
+    })
+
+    $(document).ajaxStop(function (xhr) {
+      // 全局有任意一次 AJAX 请求结束（必须是 jQuery 发起的请求）
+      console.log('请求结束了')
+    })
+
+    $('#btn_send').on('click', function () {
+      $.get('./time.php', function (res) {
+        console.log(res)
+      })
+
+      // // 原生方式发送的请求捕获不到
+      // var xhr = new XMLHttpRequest()
+      // xhr.open('GET', './time.php')
+      // xhr.send(null)
+    })
+
+    // $('#btn_send').trigger('click')
+  </script>
+</body>
+</html>

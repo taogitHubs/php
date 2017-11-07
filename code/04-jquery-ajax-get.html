@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>jQuery 中 $.get</title>
+</head>
+<body>
+  <!-- <div class="loading">loading...</div> -->
+  <script src="jquery.js"></script>
+  <script>
+    // 内部调用的还是 $.ajax
+    $.get('./time.php', { id: 123 }, function (res) {
+      console.log(res)
+    })
+  </script>
+</body>
+</html>

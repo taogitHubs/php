@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>跨域请求的解决方案推倒</title>
+</head>
+<body>
+  <!-- http://day-11.dev/08-cross-domain.html -->
+  <!-- 浏览器限制的是 xhr 对象不允许跨域请求 -->
+  <!-- 换一个不被浏览器限制跨域的方式 -->
+  <!-- 其实在之前的功能性标签中有很多支持跨域请求的标签：img/link/script/iframe -->
+  <!-- 必须满足：1. 可以通过代码控制（发送请求），2. 能将数据传到服务端 还能拿到服务端返回的数据 -->
+
+  <!-- <img src="http://api.day-11.dev/users.php" alt=""> -->
+  <!-- 拿不到服务端返回的数据 淘汰 -->
+
+  <!-- <link rel="stylesheet" href="http://api.day-11.dev/users.php"> -->
+  <!-- 拿不到服务端返回的数据 淘汰 -->
+
+  <!-- <script>
+    function foo (data) {
+      console.log(data)
+    }
+  </script>
+  <script src="http://api.day-11.dev/users.php"></script>
+  通过script的src指向一个不同源的地址发送请求，这里的地址是可以带有问号参数
+  通过被载入的 这段 JS脚本调用我们预先定义好的函数，让我们代码拿到返回值
+
+  <script>
+    document.createElement('script')
+  </script> -->
+</body>
+</html>

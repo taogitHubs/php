@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+    	<script type="text/javascript">
+    		var xhr=new XMLHttpRequest();
+    		xhr.open('GET','/day9/test.php');
+    		xhr.send();
+    		xhr.onreadystatechange=function(){
+    			console.log(xhr.readyState); 
+    			if(xhr.readyState===4){
+    				document.write(xhr.responseText);
+    				console.log(xhr.getAllResponseHeaders);
+    				
+    			}
+    		}
+    	</script>
+    </body>
+</html>

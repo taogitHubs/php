@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  <script src="jquery.js"></script>
+  <script>
+    // 当前文件访问地址：
+    // http://day-11.dev/07-cross-domain-1.html
+
+    // ajax 请求是支持指定完整 URL
+    $.get('http://day-11.dev/users.php', function (users) {
+      console.log(users)
+    })
+
+    // 不同源的地址之间不允许 跨域请求
+    $.get('http://api.day-11.dev/users.php', function (users) {
+      console.log(users)
+    })
+
+    // 由于浏览器有一个同源策略(安全)，所以要不允许不同源地址之间的 AJAX
+  </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+    	<button id="btn">提交</button>
+    	<script src="jquery.js"></script>
+    	<div></div>
+    	<script>
+    		// $.getScript() 调用一个js文件并执行
+    		// $('#btn').on('click',function(){
+    		// 	$.getScript('./ajax.js',function(){
+    		// 		console.log('执行成功')
+    		// 	})
+    		// })
+    		//第一个参数为调用的js文件路径,参数二为成功载入后回调函数。
+    		
+    		//$.getJSON 通过 HTTP GET 请求载入 JSON 数据。
+    		//$.getJSON(url,data,success(data,status,xhr))
+    		//·url用于提供json数据的地址页
+			// ·data(Optional)用于传送到服务器的键值对
+			// ·callback(Optional)回调函数，json数据请求成功后的处理函数
+
+
+    		// $(selector).load(url,data,function(response,status,xhr)  
+    		//selector:存放数据的元素填选择器即可
+    		//url：规定要将请求发送到哪个 URL。
+    		//data	可选。规定连同请求发送到服务器的数据。
+    		//function(response,status,xhr)	请求完成时运行的函数
+    		// response - 包含来自请求的结果数据
+    		// status - 包含请求的状态
+    		// xhr -XMLHttpRequest对象
+    	</script>
+    </body>
+</html>

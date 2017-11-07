@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CORS</title>
+</head>
+<body>
+  <script src="jquery.js"></script>
+  <script>
+    // 在服务端支持 CORS 的前提下，客户端还是直接发送 AJAX 请求
+
+    $.get('http://api.day-11.dev/cors-users.php', function (res) {
+      console.log(res)
+    })
+
+    $.post('http://api.day-11.dev/cors-users.php', function (res) {
+      console.log(res)
+    })
+  </script>
+</body>
+</html>

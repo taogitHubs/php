@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JSONP 方式发送跨域请求</title>
+</head>
+<body>
+  <button id="btn">请求</button>
+
+  <script>
+
+    document.getElementById('btn').addEventListener('click', function () {
+      // http://api.day-11.dev/users.php
+      var fnName = 'jsonp_' + Date.now() + Math.random().toString().substr(2)
+
+      // 可以认为这个 script 是用来发送请求的请求代理对象
+      var script = document.createElement('script')
+      script.src = 'http://api.day-11.dev/users.php?callback=' + fnName
+
+      // 准备一个接收数据的函数，这个函数是被最终引入的脚本调用的
+
+      window[fnName] = function (data) {
+        console.log(data)
+
+        delete window[fnName]
+      }
+
+      // 只有 script 出现在 document 中 才会发起请求
+      document.body.appendChild(script)
+    })
+
+    // 作业封装一个 jsonp 操作函数
+    //
+
+  </script>
+</body>
+</html>

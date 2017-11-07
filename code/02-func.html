@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+  <script>
+
+    function foo (callback) {
+      var data
+
+      setTimeout(function bar () {
+        data = Date.now()
+        callback(data)
+      }, 100);
+    }
+
+    foo(function (res) {
+      console.log(data)
+    })
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AJAX 封装</title>
+</head>
+<body>
+  <script>
+
+    // get/post/put/delete/patch/option
+    // 一般情况下，被 AJAX 请求的地址一般称之为 API，这种接口绝大多数情况都是采用 JSON 跟我们交互的
+
+    // 封装的过程：
+    //  1. 写出一个比较完善的用例
+    //  2. 直接声明一个函数，函数体就是这个用例，形参先留空
+    //  3. 找到函数体中可能在以后使用过程中变化的点，抽象成参数
+    //
+
+    // function ajax (method, url) {
+    //   var xhr = new XMLHttpRequest()
+
+    //   xhr.addEventListener('readystatechange', function () {
+    //     if (this.readyState !== 4) return
+    //     var data = JSON.parse(this.responseText)
+    //     console.log(data)
+    //   })
+
+    //   xhr.open(method, url)
+
+    //   xhr.send(null)
+    // }
+
+
+    // ajax('GET', './time.php')
+    //
+    // 1. 功能不完善,  2. 主观处理了响应结果，应该将结果返回给调用者
+    // ============================
+
+
+
+    // version 2 =======================================
+
+    // function ajax (method, url, params) {
+    //   // 统一大小写
+    //   method = method.toUpperCase()
+
+
+    //   // 将对象形式的 params 参数 转换为 urlencoded 格式的字符串
+    //   var temp = []
+    //   for (var key in params) {
+    //     temp.push(key + '=' + params[key])
+    //     // => [ 'id=123', 'name=zang' ]
+    //   }
+    //   var querystring = temp.join('&')
+    //   // => 'id=123&name=zang'
+
+
+    //   var xhr = new XMLHttpRequest()
+
+    //   xhr.addEventListener('readystatechange', function () {
+    //     if (this.readyState !== 4) return
+    //     var data = JSON.parse(this.responseText)
+    //     console.log(data)
+    //   })
+
+    //   if (method === 'GET') {
+    //     url += '?' + querystring
+    //     // => './time.php?id=123&name=zang'
+    //   }
+
+    //   xhr.open(method, url)
+
+    //   // 如果是 POST 请求 就设置 请求体，并设置请求体的内容类型
+    //   var data = null
+    //   if (method === 'POST') {
+    //     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+    //     data = querystring
+    //   }
+
+    //   xhr.send(data)
+    // }
+
+    // ajax('GET', './time.php', { id: 123, name: 'zang' })
+    // ajax('POST', './time.php', { id: 123, name: 'zang' })
+
+    // // // 由于使用层面数据传递 对象会比传有格式的字符串方便
+    // // ajax('GET', './time.php', 'id=123&name=zang')
+    // // ajax('GET', './time.php', { id: 123, name: 'zang' })
+
+
+    //   // var data = method === 'POST' ? querystring : null
+    //   // if (data !== null) {
+    //   //   xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+    //   // }
+
+    // // ajax('GET', './time.php', { id: 123, name: 'zang' })
+
+
+
+    // version 3 ====================================================
+    // function ajax (method, url, params) {
+    //   var result
+
+    //   method = method.toUpperCase()
+
+    //   var temp = []
+    //   for (var key in params) {
+    //     temp.push(key + '=' + params[key])
+    //   }
+    //   var querystring = temp.join('&')
+
+    //   var xhr = new XMLHttpRequest()
+
+    //   xhr.addEventListener('readystatechange', function () {
+    //     if (this.readyState !== 4) return
+    //     result = JSON.parse(this.responseText)
+    //     // // 这里的 return 只能影响当前所在函数
+    //     // return result
+    //     // console.log(result)
+    //   })
+
+    //   if (method === 'GET') {
+    //     url += '?' + querystring
+    //   }
+
+    //   xhr.open(method, url, false)
+
+    //   var data = null
+    //   if (method === 'POST') {
+    //     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+    //     data = querystring
+    //   }
+
+    //   xhr.send(data)
+
+    //   return result
+    // }
+
+    // var data = ajax('get', './time.php', { id: 123 })
+    // console.log(data)
+
+    // 借助同步模式 + 外部作用域变量解决数据返回问题
+
+
+    // version 4 =====================================================
+    // 2. 主观处理了响应结果
+    // “没有办法”将数据返回回去
+    function ajax (method, url, params, after) {
+      method = method.toUpperCase()
+
+      var temp = []
+      for (var key in params) {
+        temp.push(key + '=' + params[key])
+      }
+      var querystring = temp.join('&')
+
+      var xhr = new XMLHttpRequest()
+
+      xhr.addEventListener('readystatechange', function () {
+        if (this.readyState !== 4) return
+        var result = JSON.parse(this.responseText)
+        // console.log(result)
+        after(result) // 执行调用者指定的事情
+      })
+
+      if (method === 'GET') {
+        url += '?' + querystring
+      }
+
+      xhr.open(method, url)
+
+      var data = null
+      if (method === 'POST') {
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+        data = querystring
+      }
+
+      xhr.send(data)
+    }
+
+    // 定义一个在得到数据过后做的事情
+    var after = function (res) {
+      console.log('先干什么')
+      console.log('再干什么')
+      console.log(res)
+    }
+
+    ajax('get', './time.php', { id: 123 }, after)
+    // 委托：我定义，你执行，你帮我做我想要做的事情
+
+    // 通过回调函数解决拿不到异步数据问题
+
+  </script>
+</body>
+</html>

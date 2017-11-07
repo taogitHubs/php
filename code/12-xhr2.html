@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>XHR 2.0</title>
+</head>
+<body>
+  <input type="file" id="avatar">
+
+  <button id="btn">上传</button>
+
+  <script>
+    // var xhr = new XMLHttpRequest()
+    // xhr.open('GET', './time.php')
+    // xhr.onload = function () {
+    //   // onload readyState === 4
+    //   console.log(this.readyState)
+    // }
+    // xhr.onprogress = function () {
+    //   // onload readyState === 3
+    //   console.log(this.readyState)
+    // }
+    // xhr.send(null)
+    //
+
+    var btn = document.getElementById('btn')
+
+    btn.onclick = function () {
+      var avatar = document.getElementById('avatar')
+
+      var formData = new FormData()
+      formData.append('name', 'zhangsan')
+      formData.append('gender', '1')
+      formData.append('avatar', avatar.files[0])
+
+      var xhr = new XMLHttpRequest()
+      xhr.open('POST', './upload.php')
+      xhr.onload = function () {
+        console.log(this.responseText)
+      }
+
+      xhr.upload.onprogress = function (e) {
+        console.log(e)
+      }
+
+      xhr.send(formData)
+    }
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+    	<button id="btn">提交</button>
+    	<script>
+    		function foo(url,bar,fun){
+                var fnName = bar + Date.now() + Math.random().toString().substr(2)
+    			var script=document.createElement("script")
+    			script.src=url+'?callback=' + fnName
+    			window[fnName]=function(){
+    				fun(res)
+    				delete.windowp[fnName]
+    			}
+    			document.body.appendChild(script)
+    		}
+    	document.getElementById("btn").addEventListener('click', function(){
+    		foo('http://taobao.et/time.php','jsonp_',function(res){
+    			console.log(res)
+    		})
+    	})
+    	</script>
+    </body>
+</html>

@@ -1,0 +1,33 @@
+http://php.net/manual/zh/getting-started.php
+
+================ 发出去的包 ================
+
+GET /manual/zh/getting-started.php HTTP/1.1     -- 请求行
+Host: php.net
+Connection: keep-alive
+Cache-Control: max-age=0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.9 Safari/537.36
+Upgrade-Insecure-Requests: 1
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+DNT: 1
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.8
+Cookie: COUNTRY=NA%2C121.69.48.154; LAST_NEWS=1506153104; LAST_LANG=zh
+If-Modified-Since: Sat, 23 Sep 2017 04:08:38 GMT
+
+================ 返回的包 ================
+
+HTTP/1.1 200 OK                         --- 响应行
+Server: nginx/1.6.2
+Date: Sun, 24 Sep 2017 03:43:59 GMT
+Content-Type: text/html; charset=utf-8
+Content-Length: 4428
+Connection: keep-alive
+X-Powered-By: PHP/5.6.30-0+deb8u1
+Content-language: en
+X-Frame-Options: SAMEORIGIN
+Set-Cookie: LAST_LANG=zh; expires=Mon, 24-Sep-2018 03:43:59 GMT; Max-Age=31536000; path=/; domain=.php.net
+Link: <http://php.net/manual/zh/getting-started.php>; rel=shorturl
+Last-Modified: Sat, 23 Sep 2017 04:08:38 GMT
+Content-Encoding: gzip
+Vary: Accept-Encoding

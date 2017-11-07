@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+    	<input type="text" id="urse">
+    	<input type="password" id="pass">
+    	<button id="btn">提交</button>
+    	<script>
+    		var btn=document.getElementById('btn')
+
+    		btn.addEventListener('click', function(){
+
+    			var urse=document.getElementById('urse').value
+    			var pass=document.getElementById('pass').value
+
+    			var xhr=new XMLHttpRequest()
+    			xhr.addEventListener('readystatechange',function(){
+    				if(this.readyState !== 4) return
+    				console.log(this.responseText)
+    			})
+    			xhr.open('POST','./add.php')
+    			xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded')
+
+    			xhr.send('name='+urse+'&password='+pass)
+    			
+    		})
+    	</script>
+    </body>
+</html>

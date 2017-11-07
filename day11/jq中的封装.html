@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <script src="jquery.js"></script>
+    </head>
+    <body>
+		<script>
+			$.ajax({
+				url: './time.php',//设置响应地址
+				type: 'GET',//请求方式，默认
+				dataType: 'json',//主观设置响应数据格式
+				data: {id: 13},//请求的参数 get以url传递，post以请求体传递
+				beforeSend:function(xhr){
+					console.log('111')
+				},
+				success:function(res){
+					//自动根据响应报文的响应头里面的 Content-Type 转换数据
+					console.log(res)//这里返回的是个对象
+				},
+				//error 请求失败，或者响应状态码不等于 200
+				error:function(xhr){
+					console.log(xhr.status)
+				},
+				complete:function(xhr){
+					console.log(2222)
+				}
+			})
+		</script>
+    </body>
+</html>

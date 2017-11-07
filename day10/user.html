@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>XXX管理系统</title>
+  <link rel="stylesheet" href="assets/css/bootstrap.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <nav class="navbar navbar-expand navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="#">XXX管理系统</a>
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="index.html">用户管理</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">商品管理</a>
+      </li>
+    </ul>
+  </nav>
+  <main class="container">
+    <h1 class="heading">用户管理 <a class="btn btn-link btn-sm" href="edit.html">添加</a></h1>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>头像</th>
+          <th>姓名</th>
+          <th>性别</th>
+          <th>年龄</th>
+          <th class="text-center" width="140">操作</th>
+        </tr>
+      </thead>
+      <tbody id="content">
+      </tbody>
+    </table>
+  </main>
+  
+  <script>
+  	(function (){
+  		var xhr=new XMLHttpRequest()
+  		var date=new Date();
+  		var count=date.getFullYear()
+  		console.log()
+  		xhr.addEventListener('readystatechange', function(){
+  			if(this.readyState!==4) return
+  			var data=JSON.parse(this.responseText);
+  			var tbody=document.getElementById('content')
+  			for(var i=0; i<data.length;i++){
+  				var tr=document.createElement('tr')
+  				var bar=data[i].riqi.split('-')[0]
+  				foo=count-bar
+  				tr.innerHTML='\
+              <th scope="row">' + data[i].id + '</th>\
+              <td><img src="' + data[i].tx + '" class="rounded" alt="' + data[i].name + '"></td>\
+              <td>' + data[i].name + '</td>\
+              <td>' + (data[i].sex === '0' ? '♂' : '♀') + '</td>\
+              <td>' +foo + '</td>\
+              <td class="text-center">\
+                <button class="btn btn-info btn-sm">编辑</button>\
+                <button class="btn btn-danger btn-sm">删除</button>\
+              </td>'
+              tbody.appendChild(tr);
+  			}
+  		})
+  		xhr.open('GET','./user.php');
+  		xhr.send(null);
+
+  	})()
+  </script>
+</body>
+</html>

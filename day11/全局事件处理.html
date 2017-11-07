@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+    	<button id="btn">请求</button>
+    	<script src="jquery.js"></script>
+
+    	<script>
+    		//这种类型的事件最适合去做加载动画
+    		$(document).ajaxStart(function(xhr){
+    			//全局有任意一次AJAX请求开始(必须是jq发起的请求)
+    			console.log('有请求了')
+    		})
+    		$(document).ajaxStop(function(xhr){
+    			//全局有任意一次AJAX请求结束(必须是jq发起的请求)
+    			console.log('请求结束了')
+    		})
+    		$('#btn').on('click',function(){
+    			$.get('./time.php',function(res){
+    				console.log(res)
+    			})
+    		})
+    		//原生方式发送的请求捕获不到
+    	</script>
+    </body>
+</html>

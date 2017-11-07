@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  <script src="jquery.js"></script>
+  <script>
+    $.ajax({
+      url: 'http://api.day-11.dev/users.php',
+      data: { id: 123 },
+      dataType: 'jsonp', // 是否为 JSONP 请求，就看这里
+      success: function (res) {
+        console.log(res)
+      }
+    })
+  </script>
+</body>
+</html>

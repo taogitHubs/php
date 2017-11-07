@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>jQuery 中 针对 AJAX 的封装</title>
+</head>
+<body>
+  <!-- <div class="loading">loading...</div> -->
+  <script src="jquery.js"></script>
+  <script>
+
+    // $.ajax('./time.php', {
+    //   type: 'post', // 请求方式，默认get
+    //   data: { id: 123 }, // 请求参数，get 以 url 传递，post 以 请求体 传递
+    //   dataType: 'json', // 主观设置响应数据格式
+    //   beforeSend: function (xhr) {
+    //     // 一般可以在这里显示界面加载动画
+    //     console.log('beforeSend')
+    //   },
+    //   // success 指的是 响应状态码为 200 时处理的逻辑
+    //   success: function (res) {
+    //     // 自动根据响应报文的响应头里面的 Content-Type 转换数据
+    //     // 如果 Content-Type 是 application/json 会自动反序列化 json 字符串，得到对象
+    //     console.log(res)
+    //   },
+    //   // error 请求失败，或者响应状态码不等于 200
+    //   error: function (xhr) {
+    //     console.log(xhr.status)
+    //   },
+    //   // 不管成功或失败，都执行
+    //   complete: function (xhr) {
+    //     // 一般可以在这里结束界面加载动画
+    //     console.log('complete')
+    //   }
+    // })
+
+    $.ajax({
+      url: './time.php',
+      type: 'post', // 请求方式，默认get
+      data: { id: 123 }, // 请求参数，get 以 url 传递，post 以 请求体 传递
+      dataType: 'json', // 主观设置响应数据格式
+      beforeSend: function (xhr) {
+        // 一般可以在这里显示界面加载动画
+        console.log('beforeSend')
+      },
+      // success 指的是 响应状态码为 200 时处理的逻辑
+      success: function (res) {
+        // 自动根据响应报文的响应头里面的 Content-Type 转换数据
+        // 如果 Content-Type 是 application/json 会自动反序列化 json 字符串，得到对象
+        console.log(res)
+      },
+      // error 请求失败，或者响应状态码不等于 200
+      error: function (xhr) {
+        console.log(xhr.status)
+      },
+      // 不管成功或失败，都执行
+      complete: function (xhr) {
+        // 一般可以在这里结束界面加载动画
+        console.log('complete')
+      }
+    })
+
+  </script>
+</body>
+</html>

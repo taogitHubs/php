@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>jQuery 中 $.post</title>
+</head>
+<body>
+  <script src="jquery.js"></script>
+  <script>
+    $.post('./time.php', { id: 123 }, function (res) {
+      console.log(res)
+    })
+  </script>
+</body>
+</html>

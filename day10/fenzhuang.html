@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+    	<script>	
+    		function ajax(element,url,parse,after){
+    			var xhr=new XMLHttpRequest()
+                var pairs=[]
+                for(var k in parse){
+                    pairs.push(k+'='+parse[k])
+                }
+                var querystring=pairs.join('&');
+    			xhr.addEventListener('readystatechange',function(){
+    				if(this.readyState!==4) return
+    				var result=JSON.parse(this.responseText)
+                    after(result)
+    			})
+                if(element==='GET'){
+                    url+='?'+querystring
+                }
+    			xhr.open(element,url)
+                if(element==='POST'){
+                    xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded')
+                   var data=querystring
+                }
+    			xhr.send(data)
+    		}
+    		ajax('GET','./time.php', {id:123},function(time){console.log(time)})
+    	</script>
+    </body>
+</html>
